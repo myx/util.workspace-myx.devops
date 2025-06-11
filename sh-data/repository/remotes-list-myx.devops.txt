@@ -1,0 +1,16 @@
+myx/util.workspace-myx.devops/			git@github.com:myx/util.workspace-myx.devops.git
+
+myx/myx.distro-.local/					git@github.com:myx/myx.distro-.local.git		main
+myx/myx.distro-system/					git@github.com:myx/myx.distro-system.git		main
+myx/myx.distro-source/					git@github.com:myx/myx.distro-source.git
+myx/myx.distro-deploy/					git@github.com:myx/myx.distro-deploy.git
+myx/myx.distro-remote/					git@github.com:myx/myx.distro-remote.git		main
+
+# myx/myx.common/os-java				git@github.com:myx/myx-distro-meta-os-java.git
+# myx/myx.common/os-ruby				git@github.com:myx/myx-distro-meta-os-ruby.git
+# myx/myx.common/os-golang				git@github.com:myx/myx-distro-meta-os-golang.git
+
+myx/myx.common/os-myx.common/          	git@github.com:myx/os-myx.common.git
+myx/myx.common/os-myx.common-freebsd/  	git@github.com:myx/os-myx.common-freebsd.git
+myx/myx.common/os-myx.common-ubuntu/   	git@github.com:myx/os-myx.common-ubuntu.git
+myx/myx.common/os-myx.common-macosx/   	git@github.com:myx/os-myx.common-macosx.git

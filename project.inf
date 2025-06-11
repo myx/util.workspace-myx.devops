@@ -1,0 +1,6 @@
+Name: util.workspace-myx.devops
+Info: Abstract workspace for myx.distro & myx.common sdk (with workspace installer)
+Declares: \
+	distro-image-sync:source-prepare-pull:repo:myx/util.workspace-myx.devops::git@github.com:myx/util.workspace-myx.devops.git \
+	distro-image-sync:source-prepare-pull:list:.:sh-data/repository/remotes-list-myx.devops.txt \
+
