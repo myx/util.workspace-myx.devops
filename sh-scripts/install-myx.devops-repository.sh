@@ -31,6 +31,7 @@ echo "Install: .local system packages (re-)installed." >&2
 ( 
 sed -e 's/^[[:space:]]*//' -e '/^#/d' -e '/^$/d' <<\SOURCE_SETUP
 
+	DistroSourcePrepare.fn.sh --prepare-register-repository-root lib
 	DistroSourcePrepare.fn.sh --prepare-register-repository-root myx
   
 	echo "SourceInstall: Pull Initial Repositories..."  >&2
