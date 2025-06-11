@@ -41,7 +41,7 @@ sed -e 's/^[[:space:]]*//' -e '/^#/d' -e '/^$/d' <<\SOURCE_SETUP
 	echo "SourceInstall: Pull Repositories..."  >&2
 	(
 		cat <<\INITIAL_REPOSITORIES
-			myx/util.repository-myx git@github.com:myx/util.repository-myx.git
+			myx/util.workspace-myx.devops git@github.com:myx/util.workspace-myx.devops.git
 		INITIAL_REPOSITORIES
 	) | DistroImageSync.fn.sh --execute-from-stdin-repo-list
 
