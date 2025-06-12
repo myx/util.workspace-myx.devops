@@ -24,7 +24,7 @@ REPO_LIST )"
 export MMDAPP="$TGT_APP_PATH"
 mkdir -p "$MMDAPP"
 
-set -e
+set -ex
 
 cd "$MMDAPP"
 echo "$0: Workspace root: $( pwd )" >&2
