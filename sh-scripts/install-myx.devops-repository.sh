@@ -8,10 +8,18 @@
 
 : "${TGT_APP_PATH:=${1:?ERROR: 'TGT_APP_PATH' env must be set or passed in the first argument}}"
 
-INITIAL_ROOT_LIST="lib myx"
-INITIAL_REPO_LIST="
-	myx/util.workspace-myx.devops git@github.com:myx/util.workspace-myx.devops.git
-"
+ROOT_LIST="$( tr -s '[:space:]' ' ' <<ROOT_LIST
+
+	lib
+	myx
+
+ROOT_LIST )"
+
+REPO_LIST="$( cat <<REPO_LIST
+
+	myx/util.workspace-myx.devops	git@github.com:myx/util.workspace-myx.devops.git	main
+
+REPO_LIST )"
 
 export MMDAPP="$TGT_APP_PATH"
 mkdir -p "$MMDAPP"
@@ -31,12 +39,14 @@ if [ ! -d "source" ] ; then
 fi
 
 ( 
-sed -e 's/^[[:space:]]*//' -e '/^#/d' -e '/^$/d' <<\SOURCE_SETUP
+sed -e 's/^[[:space:]]*//' -e '/^#/d' -e '/^$/d' <<SOURCE_SETUP
 
-	DistroSourceTools.fn.sh --register-repository-roots $INITIAL_ROOT_LIST
+	DistroSourceTools.fn.sh --register-repository-roots $ROOT_LIST
   
 	echo "SourceInstall: Pull Initial Repositories..."  >&2
-	echo "$INITIAL_REPO_LIST" | DistroImageSync.fn.sh --execute-from-stdin-repo-list
+	DistroImageSync.fn.sh --execute-from-stdin-repo-list <<REPO_LIST
+		$REPO_LIST
+	REPO_LIST
 
 	echo "SourceInstall: Sync All Known Projects..." >&2
 	DistroImageSync.fn.sh --all-tasks --execute-source-prepare-pull
