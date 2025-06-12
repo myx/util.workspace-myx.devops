@@ -1,7 +1,7 @@
 # util.workspace-myx.devops
 
 
-[Installer Script, from zero to fully configured workspace](https://github.com/myx/util.workspace-myx.devops/blob/main/sh-scripts/install-myx.devops-repository.sh). Do not forget to export `TGT_APP_PATH` variable or to specify the path to install workspace to as first argument.
+Installer Script, from zero to fully configured workspace: [install-myx.devops-repository.sh](https://github.com/myx/util.workspace-myx.devops/blob/main/sh-scripts/install-myx.devops-repository.sh). Do not forget to export `TGT_APP_PATH` variable or to specify the path to install workspace to as first argument.
 
 Examples:
 
