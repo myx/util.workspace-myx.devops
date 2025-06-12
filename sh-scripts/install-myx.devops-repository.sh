@@ -6,12 +6,10 @@
 ##       file-system) and on un-prepared OS. 
 ####
 
-TGT_APP_PATH="${TGT_APP_PATH:-$1}"
-test -z "$TGT_APP_PATH" && echo "ERROR: 'TGT_APP_PATH' env must be set" >&2 && exit 1
+: "${TGT_APP_PATH:=${1:?ERROR: 'TGT_APP_PATH' env must be set or passed in the first argument}}"
 export MMDAPP="$TGT_APP_PATH"
 mkdir -p "$MMDAPP"
 
-# rm -rf "/Users/myx/test-ws/*" ; export MMDAPP="/Users/myx/test-ws"
 set -e
 
 cd "$MMDAPP"
@@ -31,8 +29,8 @@ echo "Install: .local system packages (re-)installed." >&2
 ( 
 sed -e 's/^[[:space:]]*//' -e '/^#/d' -e '/^$/d' <<\SOURCE_SETUP
 
-	DistroSourcePrepare.fn.sh --prepare-register-repository-root lib
-	DistroSourcePrepare.fn.sh --prepare-register-repository-root myx
+	DistroSourceTools.fn.sh --register-repository-root lib
+	DistroSourceTools.fn.sh --register-repository-root myx
   
 	echo "SourceInstall: Pull Initial Repositories..."  >&2
 	(
