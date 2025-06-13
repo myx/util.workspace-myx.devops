@@ -27,7 +27,7 @@ REPO_LIST
 
 set -ex
 
-export MMDAPP="$( echo $TGT_APP_PATH )"
+export MMDAPP="$( eval echo $TGT_APP_PATH )"
 mkdir -p "$MMDAPP"
 cd "$MMDAPP"
 
