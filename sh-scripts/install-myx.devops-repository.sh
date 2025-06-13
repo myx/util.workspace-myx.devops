@@ -45,6 +45,8 @@ fi
 sed -e 's/^[[:space:]]*//' -e '/^#/d' -e '/^$/d' | ./DistroSourceConsole.sh --non-interactive \
 <<SOURCE_SETUP
 
+	set -ex
+
 	echo "SourceInstall: Running task within Source Console..."  >&2
 
 	DistroSourceTools.fn.sh --register-repository-roots $ROOT_LIST
