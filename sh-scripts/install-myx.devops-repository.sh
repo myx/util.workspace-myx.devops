@@ -25,7 +25,7 @@ REPO_LIST="$( cat \
 REPO_LIST 
 )" # REPO_LIST
 
-set -ex
+set -e
 
 export MMDAPP="$( eval echo $TGT_APP_PATH )"
 mkdir -p "$MMDAPP"
@@ -44,6 +44,8 @@ if [ ! -d "source" ] ; then
 fi
 
 sed -e 's/^[[:space:]]*//' -e '/^#/d' -e '/^$/d' <<SOURCE_SETUP
+
+	echo "SourceInstall: Running task within Source Cnsole..."  >&2
 
 	DistroSourceTools.fn.sh --register-repository-roots $ROOT_LIST
   
