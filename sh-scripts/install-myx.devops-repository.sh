@@ -25,14 +25,12 @@ REPO_LIST="$( cat \
 REPO_LIST 
 )" # REPO_LIST
 
-
 set -ex
 
-mkdir -p "$TGT_APP_PATH"
-
+export MMDAPP="$( echo $TGT_APP_PATH )"
+mkdir -p "$MMDAPP"
 cd "$MMDAPP"
 
-export MMDAPP="$( pwd )"
 
 echo "$0: Workspace root: $( pwd )" >&2
 
