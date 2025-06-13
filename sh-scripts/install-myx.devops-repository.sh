@@ -31,7 +31,6 @@ export MMDAPP="$( eval echo $TGT_APP_PATH )"
 mkdir -p "$MMDAPP"
 cd "$MMDAPP"
 
-
 echo "$0: Workspace root: $( pwd )" >&2
 
 if [ ! -d ".local/myx" ] ; then
@@ -46,7 +45,7 @@ fi
 sed -e 's/^[[:space:]]*//' -e '/^#/d' -e '/^$/d' | ./DistroSourceConsole.sh --non-interactive \
 <<SOURCE_SETUP
 
-	echo "SourceInstall: Running task within Source Cnsole..."  >&2
+	echo "SourceInstall: Running task within Source Console..."  >&2
 
 	DistroSourceTools.fn.sh --register-repository-roots $ROOT_LIST
   
@@ -58,8 +57,9 @@ sed -e 's/^[[:space:]]*//' -e '/^#/d' -e '/^$/d' | ./DistroSourceConsole.sh --no
 	echo "SourceInstall: Sync All Known Projects..." >&2
 	DistroImageSync.fn.sh --all-tasks --execute-source-prepare-pull
 	
-SOURCE_SETUP
+	echo "SourceInstall: All Source Console tasks done."  >&2
 
+SOURCE_SETUP
 
 ############
 echo "Done."
