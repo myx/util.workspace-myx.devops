@@ -8,18 +8,22 @@
 
 : "${TGT_APP_PATH:=${1:?ERROR: 'TGT_APP_PATH' env must be set or passed in the first argument}}"
 
-ROOT_LIST="$( tr -s '[:space:]' ' ' <<ROOT_LIST
+ROOT_LIST="$( tr -s '[:space:]' ' ' \
+<<ROOT_LIST
 
 	lib
 	myx
 
-ROOT_LIST )"
+ROOT_LIST
+)" # ROOT_LIST
 
-REPO_LIST="$( cat <<REPO_LIST
+REPO_LIST="$( cat \
+<<REPO_LIST
 
 	myx/util.workspace-myx.devops	git@github.com:myx/util.workspace-myx.devops.git	main
 
-REPO_LIST )"
+REPO_LIST 
+)" # REPO_LIST
 
 export MMDAPP="$TGT_APP_PATH"
 mkdir -p "$MMDAPP"
