@@ -43,7 +43,8 @@ if [ ! -d "source" ] ; then
 	bash .local/myx/myx.distro-.local/sh-scripts/DistroLocalTools.fn.sh --install-distro-source
 fi
 
-sed -e 's/^[[:space:]]*//' -e '/^#/d' -e '/^$/d' <<SOURCE_SETUP
+sed -e 's/^[[:space:]]*//' -e '/^#/d' -e '/^$/d' | ./DistroSourceConsole.sh --non-interactive \
+<<SOURCE_SETUP
 
 	echo "SourceInstall: Running task within Source Cnsole..."  >&2
 
@@ -57,7 +58,7 @@ sed -e 's/^[[:space:]]*//' -e '/^#/d' -e '/^$/d' <<SOURCE_SETUP
 	echo "SourceInstall: Sync All Known Projects..." >&2
 	DistroImageSync.fn.sh --all-tasks --execute-source-prepare-pull
 	
-SOURCE_SETUP | ./DistroSourceConsole.sh --non-interactive
+SOURCE_SETUP
 
 
 ############
