@@ -22,7 +22,7 @@ REPO_LIST="$( cat \
 
 	myx/util.workspace-myx.devops	git@github.com:myx/util.workspace-myx.devops.git	main
 
-REPO_LIST 
+REPO_LIST
 )" # REPO_LIST
 
 set -e
