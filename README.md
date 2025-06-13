@@ -7,7 +7,7 @@ Examples:
 
  Mac OSX (using `curl` and `~/Workspaces/ws-myx.devops` as workspace root):
  
-	export TGT_APP_PATH='~/Workspaces/ws-myx.devops' ; curl --silent -L https://raw.githubusercontent.com/myx/util.workspace-myx.devops/refs/heads/main/sh-scripts/install-myx.devops-repository.sh | sh -e
+	export TGT_APP_PATH="~/Workspaces/ws-myx.devops" ; curl --silent -L https://raw.githubusercontent.com/myx/util.workspace-myx.devops/refs/heads/main/sh-scripts/install-myx.devops-repository.sh | sh -e
 	
  FreeBSD (using `fetch` and `~/Workspaces/ws-myx.devops` as workspace root):
 

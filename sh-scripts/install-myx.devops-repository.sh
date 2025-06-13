@@ -25,12 +25,15 @@ REPO_LIST="$( cat \
 REPO_LIST 
 )" # REPO_LIST
 
-export MMDAPP="$TGT_APP_PATH"
-mkdir -p "$MMDAPP"
 
 set -ex
 
+mkdir -p "$TGT_APP_PATH"
+
 cd "$MMDAPP"
+
+export MMDAPP="$( pwd )"
+
 echo "$0: Workspace root: $( pwd )" >&2
 
 if [ ! -d ".local/myx" ] ; then
