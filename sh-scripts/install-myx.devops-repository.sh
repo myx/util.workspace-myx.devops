@@ -6,6 +6,31 @@
 ##       file-system) and on un-prepared OS. 
 ####
 
+FetchStdout() {
+    local URL="$1"
+    [ -n "$URL" ] || { echo "⛔ ERROR: FetchStdout: The URL is required!" >&2; exit 1; }
+    set -e
+
+    command -v curl  >/dev/null 2>&1 && { curl --silent -L "$URL"; return 0; }
+    command -v fetch >/dev/null 2>&1 && { fetch -o - "$URL"; return 0; }
+    command -v wget  >/dev/null 2>&1 && { wget --quiet -O - "$URL"; return 0; }
+
+    echo "⛔ ERROR: curl, fetch, or wget were not found, do not know how to download!" >&2
+    exit 1
+}
+
+set -e
+
+FetchStdout https://raw.githubusercontent.com/myx/myx.distro-.local/refs/heads/main/sh-scripts/DistroLocalTools.fn.sh \
+| sh -e --install-workspace <<WORKSPACE
+
+	lib
+	myx
+
+WORKSPACE
+)" # ROOT_LIST
+
+
 ROOT_LIST="$( tr -s '[:space:]' ' ' \
 <<ROOT_LIST
 
@@ -29,7 +54,7 @@ EXTRA_CMD="$( cat \
 	# Run Distro tools from source folder, so we can edit source files and feel 
 	# the change without commiting and updating the system via public repository.
 
-	Distro DistroLocalTools --system-config-option --upsert-if MDSC_ORIGIN "source" ""
+	Distro DistroSourceTools --system-config-option --upsert-if MDLT_ORIGIN "source" ""
 	Distro DistroSourceTools --system-config-option --upsert-if MDSC_ORIGIN "source" ""
 
 REPO_LIST
@@ -38,7 +63,7 @@ REPO_LIST
 
 set -e
 
-: "${TGT_APP_PATH:=${1:?ERROR: TGT_APP_PATH env must be set or call as: $0 <workspace-path>}}"
+: "${TGT_APP_PATH:=${1:?⛔ ERROR: TGT_APP_PATH env must be set or call as: $0 <workspace-path>}}"
 MMDAPP=$TGT_APP_PATH
 case $MMDAPP in
   "~"*) MMDAPP=$HOME${MMDAPP#\~} ;;	# expand ~
