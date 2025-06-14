@@ -6,8 +6,6 @@
 ##       file-system) and on un-prepared OS. 
 ####
 
-: "${TGT_APP_PATH:=${1:?ERROR: 'TGT_APP_PATH' env must be set or passed in the first argument}}"
-
 ROOT_LIST="$( tr -s '[:space:]' ' ' \
 <<ROOT_LIST
 
@@ -25,13 +23,37 @@ REPO_LIST="$( cat \
 REPO_LIST
 )" # REPO_LIST
 
+EXTRA_CMD="$( cat \
+<<REPO_LIST
+
+	# Run Distro tools from source folder, so we can edit source files and feel 
+	# the change without commiting and updating the system via public repository.
+
+	Distro DistroLocalTools --system-config-option --upsert-if MDSC_ORIGIN "source" ""
+	Distro DistroSourceTools --system-config-option --upsert-if MDSC_ORIGIN "source" ""
+
+REPO_LIST
+)" # REPO_LIST
+
+
 set -e
 
-export MMDAPP="$( eval echo $TGT_APP_PATH )"
+: "${TGT_APP_PATH:=${1:?ERROR: TGT_APP_PATH env must be set or call as: $0 <workspace-path>}}"
+MMDAPP=$TGT_APP_PATH
+case $MMDAPP in
+  "~"*) MMDAPP=$HOME${MMDAPP#\~} ;;	# expand ~
+esac
+case $MMDAPP in
+  /*) ;;							# already absolute
+  *)  MMDAPP=$PWD/$MMDAPP ;;		# make absolute
+esac
+
+export MMDAPP
+
 mkdir -p "$MMDAPP"
 cd "$MMDAPP"
 
-echo "$0: Workspace root: $( pwd )" >&2
+echo "$0: Workspace root: $PWD" >&2
 
 if [ ! -d ".local/myx" ] ; then
 	echo "Install: .local system, pulling system packages..." >&2
