@@ -6,6 +6,9 @@
 ##       file-system) and on un-prepared OS. 
 ####
 
+set -e
+
+if [ false ] ; then
 FetchStdout() {
     local URL="$1"
     [ -n "$URL" ] || { echo "⛔ ERROR: FetchStdout: The URL is required!" >&2; exit 1; }
@@ -19,16 +22,23 @@ FetchStdout() {
     exit 1
 }
 
-set -e
-
 FetchStdout https://raw.githubusercontent.com/myx/myx.distro-.local/refs/heads/main/sh-scripts/DistroLocalTools.fn.sh \
 | sh -e --install-workspace <<WORKSPACE
 
-	lib
-	myx
+	# Repository roots for source projects:
+	source root lib
+	source root myx
+
+	# Initial list of source projects to pull
+	source pull myx/util.workspace-myx.devops:main:git@github.com:myx/util.workspace-myx.devops.git
+
+	# Executable commands to setup source sub-system
+	source exec Source DistroSourceTools --system-config-option --upsert-if MDLT_CONSOLE_ORIGIN source ""
+	source exec Source DistroImageSync --all-tasks --execute-source-prepare-pull
 
 WORKSPACE
 )" # ROOT_LIST
+fi
 
 
 ROOT_LIST="$( tr -s '[:space:]' ' ' \
