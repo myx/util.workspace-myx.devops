@@ -54,8 +54,7 @@ EXTRA_CMD="$( cat \
 	# Run Distro tools from source folder, so we can edit source files and feel 
 	# the change without commiting and updating the system via public repository.
 
-	Distro DistroSourceTools --system-config-option --upsert-if MDLT_ORIGIN "source" ""
-	Distro DistroSourceTools --system-config-option --upsert-if MDSC_ORIGIN "source" ""
+	Distro DistroSourceTools --system-config-option --upsert-if MDLT_CONSOLE_ORIGIN source ""
 
 REPO_LIST
 )" # REPO_LIST
@@ -96,15 +95,15 @@ sed -e 's/^[[:space:]]*//' -e '/^#/d' -e '/^$/d' | ./DistroSourceConsole.sh --no
 
 	echo "SourceInstall: Running task within Source Console..."  >&2
 
-	DistroSourceTools.fn.sh --register-repository-roots $ROOT_LIST
+	Source DistroSourceTools --register-repository-roots $ROOT_LIST
   
 	echo "SourceInstall: Pull Initial Repositories..."  >&2
-	DistroImageSync.fn.sh --execute-from-stdin-repo-list <<REPO_LIST
+	Source DistroImageSync --execute-from-stdin-repo-list <<REPO_LIST
 		$REPO_LIST
 	REPO_LIST
 
 	echo "SourceInstall: Sync All Known Projects..." >&2
-	DistroImageSync.fn.sh --all-tasks --execute-source-prepare-pull
+	Source DistroImageSync --all-tasks --execute-source-prepare-pull
 	
 	echo "SourceInstall: All Source Console tasks done."  >&2
 
