@@ -23,7 +23,7 @@ FetchStdout() {
 }
 
 FetchStdout https://raw.githubusercontent.com/myx/myx.distro-.local/refs/heads/main/sh-scripts/DistroLocalTools.fn.sh \
-| sh -e --install-workspace <<WORKSPACE
+| sh -e --install-workspace-from-stdin-config <<WORKSPACE
 
 	# Repository roots for source projects:
 	source root lib
