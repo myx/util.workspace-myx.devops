@@ -22,8 +22,9 @@ FetchStdout() {
     exit 1
 }
 
+set -x
 FetchStdout https://raw.githubusercontent.com/myx/myx.distro-.local/refs/heads/main/sh-scripts/DistroLocalTools.fn.sh \
-| sh -e --install-workspace-from-stdin-config <<WORKSPACE
+| sh -xes -- --install-workspace-from-stdin-config <<WORKSPACE
 
 	# Repository roots for source projects:
 	source root lib
@@ -68,9 +69,6 @@ EXTRA_CMD="$( cat \
 
 REPO_LIST
 )" # REPO_LIST
-
-
-set -e
 
 : "${TGT_APP_PATH:=${1:?⛔ ERROR: TGT_APP_PATH env must be set or call as: $0 <workspace-path>}}"
 MMDAPP=$TGT_APP_PATH
