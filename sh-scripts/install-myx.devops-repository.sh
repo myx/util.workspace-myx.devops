@@ -8,7 +8,7 @@
 
 set -e
 
-if [ false ] ; then
+if false ; then
 FetchStdout() {
     local URL="$1"
     [ -n "$URL" ] || { echo "⛔ ERROR: FetchStdout: The URL is required!" >&2; exit 1; }
