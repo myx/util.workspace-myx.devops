@@ -38,7 +38,6 @@ FetchStdout https://raw.githubusercontent.com/myx/myx.distro-.local/refs/heads/m
 	source exec Source DistroImageSync --all-tasks --execute-source-prepare-pull
 
 WORKSPACE
-)" # ROOT_LIST
 fi
 
 
