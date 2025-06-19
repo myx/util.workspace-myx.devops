@@ -8,6 +8,7 @@
 
 set -e
 
+
 if false ; then
 FetchStdout() {
     local URL="$1"
