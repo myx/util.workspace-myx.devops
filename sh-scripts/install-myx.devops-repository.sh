@@ -20,7 +20,7 @@ set -e
 
 FetchStdout $WORKSPACE_INSTALLER_URL \
 | sh -es -- --git-clone --config-stdin \
-<<WORKSPACE_CONFIG
+<<'WORKSPACE_CONFIG'
 
     ## Workspace config for: myx/util.workspace-myx.devops ##
 
