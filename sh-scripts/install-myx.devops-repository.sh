@@ -11,34 +11,35 @@ set -e
 
 if false ; then
 FetchStdout() {
-    local URL="$1"
-    [ -n "$URL" ] || { echo "⛔ ERROR: FetchStdout: The URL is required!" >&2; exit 1; }
+    : "${1:?"⛔ ERROR: FetchStdout: The URL is required!"}"
     set -e
-
-    command -v curl  >/dev/null 2>&1 && { curl --silent -L "$URL"; return 0; }
-    command -v fetch >/dev/null 2>&1 && { fetch -o - "$URL"; return 0; }
-    command -v wget  >/dev/null 2>&1 && { wget --quiet -O - "$URL"; return 0; }
-
+    command -v curl  >/dev/null 2>&1 && { curl --silent -L "$1"; return 0; }
+    command -v fetch >/dev/null 2>&1 && { fetch -o - "$1"; return 0; }
+    command -v wget  >/dev/null 2>&1 && { wget --quiet -O - "$1"; return 0; }
     echo "⛔ ERROR: curl, fetch, or wget were not found, do not know how to download!" >&2
     exit 1
 }
 
 set -x
-FetchStdout https://raw.githubusercontent.com/myx/myx.distro-.local/refs/heads/main/sh-scripts/DistroLocalTools.fn.sh \
-| sh -xes -- --install-workspace-from-stdin-config <<WORKSPACE
+FetchStdout https://raw.githubusercontent.com/myx/myx.distro-.local/refs/heads/main/sh-scripts/workspace-install.sh \
+| sh -xes -- --web-fetch --config-stdin <<WORKSPACE
+
+	# Workspace config for: myx/util.workspace-myx.devops
 
 	# Repository roots for source projects:
-	source root lib
-	source root myx
+		source root lib
+		source root myx
 
 	# Initial list of source projects to pull
-	source pull myx/util.workspace-myx.devops:main:git@github.com:myx/util.workspace-myx.devops.git
+		source pull myx/util.workspace-myx.devops:main:git@github.com:myx/util.workspace-myx.devops.git
 
 	# Executable commands to setup source sub-system
-	source exec Source DistroSourceTools --system-config-option --upsert-if MDLT_CONSOLE_ORIGIN source ""
-	source exec Source DistroImageSync --all-tasks --execute-source-prepare-pull
+		source exec Source DistroSourceTools --system-config-option --upsert-if MDLT_CONSOLE_ORIGIN source ""
+		source exec Source DistroImageSync --all-tasks --execute-source-prepare-pull
 
 WORKSPACE
+
+exit 0
 fi
 
 
