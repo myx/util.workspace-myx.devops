@@ -5,8 +5,6 @@
 ##        (no location on local file-system) and on unprepared unix machine. 
 ####
 
-set -e
-
 WORKSPACE_INSTALLER_URL="https://raw.githubusercontent.com/myx/myx.distro-.local/refs/heads/main/sh-scripts/workspace-install.sh"
 
 FetchStdout() {
@@ -17,6 +15,8 @@ FetchStdout() {
     echo "⛔ ERROR: 'curl', 'fetch', or 'wget' were not found, do not know how to download!" >&2
     exit 1
 }
+
+set -e
 
 FetchStdout $WORKSPACE_INSTALLER_URL \
 | sh -es -- --git-clone --config-stdin \
