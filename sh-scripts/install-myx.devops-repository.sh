@@ -14,7 +14,7 @@ FetchStdout() {
     command -v curl  >/dev/null 2>&1 && { curl --silent -L "$1"; return 0; }
     command -v fetch >/dev/null 2>&1 && { fetch -o - "$1"; return 0; }
     command -v wget  >/dev/null 2>&1 && { wget --quiet -O - "$1"; return 0; }
-    echo "⛔ ERROR: curl, fetch, or wget were not found, do not know how to download!" >&2
+    echo "⛔ ERROR: 'curl', 'fetch', or 'wget' were not found, do not know how to download!" >&2
     exit 1
 }
 
