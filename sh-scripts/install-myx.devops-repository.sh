@@ -8,7 +8,6 @@
 
 set -e
 
-
 FetchStdout() {
     : "${1:?"⛔ ERROR: FetchStdout: The URL is required!"}"
     set -e
@@ -19,7 +18,6 @@ FetchStdout() {
     exit 1
 }
 
-set -x
 FetchStdout https://raw.githubusercontent.com/myx/myx.distro-.local/refs/heads/main/sh-scripts/workspace-install.sh \
 | sh -xes -- --web-fetch --config-stdin <<WORKSPACE
 
@@ -37,5 +35,3 @@ FetchStdout https://raw.githubusercontent.com/myx/myx.distro-.local/refs/heads/m
 		source exec Source DistroImageSync --all-tasks --execute-source-prepare-pull
 
 WORKSPACE
-
-exit 0
