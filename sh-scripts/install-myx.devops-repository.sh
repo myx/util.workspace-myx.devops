@@ -1,16 +1,14 @@
 #!/bin/sh
 
 ####
-## Note: this is a special script that is designed 
-##       to run stand-alone (no location on local 
-##       file-system) and on un-prepared OS. 
+## Note: this is a special script that is designed to run stand-alone
+##        (no location on local file-system) and on unprepared unix machine. 
 ####
 
 set -e
 
 FetchStdout() {
-    : "${1:?"⛔ ERROR: FetchStdout: The URL is required!"}"
-    set -e
+    : "${1:-"https://raw.githubusercontent.com/myx/myx.distro-.local/refs/heads/main/sh-scripts/workspace-install.sh"}"
     command -v curl  >/dev/null 2>&1 && { curl --silent -L "$1"; return 0; }
     command -v fetch >/dev/null 2>&1 && { fetch -o - "$1"; return 0; }
     command -v wget  >/dev/null 2>&1 && { wget --quiet -O - "$1"; return 0; }
@@ -18,8 +16,8 @@ FetchStdout() {
     exit 1
 }
 
-FetchStdout https://raw.githubusercontent.com/myx/myx.distro-.local/refs/heads/main/sh-scripts/workspace-install.sh \
-| sh -xes -- --web-fetch --config-stdin <<WORKSPACE
+FetchStdout \
+| sh -es -- --git-clone --config-stdin <<WORKSPACE
 
 	# Workspace config for: myx/util.workspace-myx.devops
 
