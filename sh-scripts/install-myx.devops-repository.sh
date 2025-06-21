@@ -19,17 +19,17 @@ FetchStdout() {
 FetchStdout \
 | sh -es -- --git-clone --config-stdin <<WORKSPACE
 
-	## Workspace config for: myx/util.workspace-myx.devops ##
+    ## Workspace config for: myx/util.workspace-myx.devops ##
 
-	# Repository roots for source projects:
-		source root lib
-		source root myx
+    # Repository roots for source projects:
+        source root lib
+        source root myx
 
-	# Initial list of source projects to pull
-		source pull myx/util.workspace-myx.devops:main:git@github.com:myx/util.workspace-myx.devops.git
+    # Initial list of source projects to pull
+        source pull myx/util.workspace-myx.devops:main:git@github.com:myx/util.workspace-myx.devops.git
 
-	# Executable commands to setup source sub-system
-		source exec Source DistroSourceTools --system-config-option --upsert-if MDLT_CONSOLE_ORIGIN source ""
-		source exec Source DistroImageSync --all-tasks --execute-source-prepare-pull
+    # Executable commands to setup source sub-system
+        source exec Source DistroSourceTools --system-config-option --upsert-if MDLT_CONSOLE_ORIGIN source ""
+        source exec Source DistroImageSync --all-tasks --execute-source-prepare-pull
 
 WORKSPACE
