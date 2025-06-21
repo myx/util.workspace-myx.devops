@@ -19,7 +19,7 @@ FetchStdout() {
 FetchStdout \
 | sh -es -- --git-clone --config-stdin <<WORKSPACE
 
-	# Workspace config for: myx/util.workspace-myx.devops
+	## Workspace config for: myx/util.workspace-myx.devops ##
 
 	# Repository roots for source projects:
 		source root lib
