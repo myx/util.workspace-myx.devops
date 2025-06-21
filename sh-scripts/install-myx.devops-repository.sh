@@ -17,7 +17,7 @@ FetchStdout() {
 }
 
 FetchStdout \
-| sh -es -- --git-clone --config-stdin <<WORKSPACE
+| sh -es -- --git-clone --config-stdin <<WORKSPACE_CONFIG
 
     ## Workspace config for: myx/util.workspace-myx.devops ##
 
@@ -32,4 +32,4 @@ FetchStdout \
         source exec Source DistroSourceTools --system-config-option --upsert-if MDLT_CONSOLE_ORIGIN source ""
         source exec Source DistroImageSync --all-tasks --execute-source-prepare-pull
 
-WORKSPACE
+WORKSPACE_CONFIG
