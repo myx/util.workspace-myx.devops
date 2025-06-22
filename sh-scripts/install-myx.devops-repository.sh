@@ -1,25 +1,20 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 ####
 ## Note: this is a special script that is designed to run stand-alone
 ##        (no location on local file-system) and on unprepared unix machine. 
 ####
 
-WORKSPACE_INSTALLER_URL="https://raw.githubusercontent.com/myx/myx.distro-.local/refs/heads/main/sh-scripts/workspace-install.sh"
-
-FetchStdout() {
-    : "${1:?"⛔ ERROR: FetchStdout: The URL is required!"}"
-    command -v curl  >/dev/null 2>&1 && { curl --silent -L "$1"; return 0; }
-    command -v fetch >/dev/null 2>&1 && { fetch -o - "$1"; return 0; }
-    command -v wget  >/dev/null 2>&1 && { wget --quiet -O - "$1"; return 0; }
-    echo "⛔ ERROR: 'curl', 'fetch', or 'wget' were not found, do not know how to download!" >&2
-    exit 1
+WorkspaceBootstrap() {
+  set -e -- "https://raw.githubusercontent.com/myx/myx.distro-.local/refs/heads/main/sh-scripts/workspace-install.sh" ; {
+    command -v curl >/dev/null 2>&1 && curl -fsSL "$1" || \
+    command -v fetch >/dev/null 2>&1 && fetch -q -o - "$1" || \
+    command -v wget >/dev/null 2>&1 && wget -qO- "$1" || \
+    { echo "⛔ ERROR: need curl, fetch or wget" >&2; exit 1; }
+  } | sh -es -- "$@"
 }
 
-set -e
-
-FetchStdout $WORKSPACE_INSTALLER_URL \
-| sh -es -- --git-clone --config-stdin \
+WorkspaceBootstrap --git-clone --config-stdin \
 <<'WORKSPACE_CONFIG'
 
     ## Workspace config for: myx/util.workspace-myx.devops ##
