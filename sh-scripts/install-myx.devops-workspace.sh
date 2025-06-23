@@ -6,7 +6,7 @@
 ####
 
 WorkspaceBootstrap() {
-	bash -ec 'bash -xe <(
+	bash -ec 'bash -e <(
 		url="https://raw.githubusercontent.com/myx/myx.distro-.local/refs/heads/main/sh-scripts/workspace-install.sh"
 		command -v curl >/dev/null 2>&1 && curl -fsSL "$url" && exit 0
 		command -v fetch >/dev/null 2>&1 && fetch -q -o - "$url" && exit 0
