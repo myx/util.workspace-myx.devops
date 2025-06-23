@@ -6,12 +6,13 @@
 ####
 
 WorkspaceBootstrap() {
-  set -e -- "https://raw.githubusercontent.com/myx/myx.distro-.local/refs/heads/main/sh-scripts/workspace-install.sh" ; {
-    command -v curl >/dev/null 2>&1 && curl -fsSL "$1" || \
-    command -v fetch >/dev/null 2>&1 && fetch -q -o - "$1" || \
-    command -v wget >/dev/null 2>&1 && wget -qO- "$1" || \
-    { echo "⛔ ERROR: need curl, fetch or wget" >&2; exit 1; }
-  } | sh -es -- "$@"
+	bash -ec 'bash -xe <(
+		url="https://raw.githubusercontent.com/myx/myx.distro-.local/refs/heads/main/sh-scripts/workspace-install.sh"
+		command -v curl >/dev/null 2>&1 && curl -fsSL "$url" && exit 0
+		command -v fetch >/dev/null 2>&1 && fetch -q -o - "$url" && exit 0
+		command -v wget >/dev/null 2>&1 && wget -qO- "$url" && exit 0
+		echo "⛔ ERROR: need curl, fetch or wget" >&2; exit 1;
+	)' -- "$@"
 }
 
 WorkspaceBootstrap --git-clone --config-stdin \
