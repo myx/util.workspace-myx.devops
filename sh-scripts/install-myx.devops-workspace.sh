@@ -7,11 +7,11 @@
 
 WorkspaceBootstrap() {
 	bash -ec 'bash -e <(
-		url="https://raw.githubusercontent.com/myx/myx.distro-.local/refs/heads/main/sh-scripts/workspace-install.sh"
+		url='https://raw.githubusercontent.com/myx/myx.distro-.local/refs/heads/main/sh-scripts/workspace-install.sh'
 		command -v curl >/dev/null 2>&1 && curl -fsSL "$url" && exit 0
 		command -v fetch >/dev/null 2>&1 && fetch -q -o - "$url" && exit 0
 		command -v wget >/dev/null 2>&1 && wget -qO- "$url" && exit 0
-		echo "⛔ ERROR: need curl, fetch or wget" >&2; exit 1;
+		echo "⛔ ERROR: need curl, fetch or wget" >&2; exit 1
 	) "$@"' -- "$@"
 }
 
