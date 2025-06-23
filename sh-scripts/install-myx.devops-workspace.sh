@@ -12,7 +12,7 @@ WorkspaceBootstrap() {
 		command -v fetch >/dev/null 2>&1 && fetch -q -o - "$url" && exit 0
 		command -v wget >/dev/null 2>&1 && wget -qO- "$url" && exit 0
 		echo "⛔ ERROR: need curl, fetch or wget" >&2; exit 1;
-	)' -- "$@"
+	) "$@"' -- "$@"
 }
 
 WorkspaceBootstrap --git-clone --config-stdin \
