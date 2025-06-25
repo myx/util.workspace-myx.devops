@@ -15,7 +15,7 @@ WorkspaceBootstrap() {
 	) "$@"' -- "$@"
 }
 
-WorkspaceBootstrap --git-clone --config-stdin \
+WorkspaceBootstrap --force --git-clone --config-stdin \
 <<'WORKSPACE_CONFIG'
 
     ## Workspace config for: myx/util.workspace-myx.devops ##
