@@ -1,0 +1,1 @@
+Pick one project and check whether its `project.inf`/builder set actually matches what it declares (`Requires`/`Provides`/`Declares`/etc.) against its real behavior and file layout. Report any mismatch found.

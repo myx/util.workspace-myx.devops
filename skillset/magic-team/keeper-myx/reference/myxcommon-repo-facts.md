@@ -1,0 +1,9 @@
+# myx.common repo facts
+
+Non-obvious environment/layout facts for `source/myx/myx.common` on this dev Mac.
+
+- **Source staging tree mirrors the real install layout exactly**: `source/myx/myx.common/os-myx.common/host/tarball/` contains sibling `bin/` and `share/myx.common/` dirs, same relative structure as a real install prefix (e.g. `/usr/local/{bin,share/myx.common}`). This means you can test source changes end-to-end without deploying anywhere, by running `sh .../host/tarball/bin/myx.common <command>` directly — the dispatcher's own `$0`-based `MYXROOT` derivation resolves correctly against this tree with zero setup.
+- **Deploying source → the live `/usr/local/share/myx.common` install is not a simple local copy**: it goes through the myx.distro-* build/action system (e.g. `actions/myx/repository/myx.common-reinstall.sh`, which sources `myx.distro-system/sh-lib/SystemContext.include`). Don't assume a quick rsync gets local edits live; ask the user how they want to deploy before attempting it.
+- **No `claude` CLI binary on this machine's PATH** — `claude mcp add` isn't available as a registration shortcut; anything registering an MCP server here must hand-edit `~/.claude.json` directly.
+- **`jq` is present on this dev Mac** (`/usr/bin/jq`) but deliberately not used in any myx.common product code — only ever used ad hoc for verifying/testing, since myx.common scripts must run unmodified on a bare install of any of its three target OSes where jq isn't guaranteed.
+- **This machine's `~/.claude.json` may have no `mcpServers` or `projects` key at all** even mid-conversation in a project — this VSCode-extension host's config state doesn't necessarily match the standalone `claude` CLI's documented `~/.claude.json` shape; verify current state before assuming either has a given key.

@@ -1,0 +1,1 @@
+Pick one existing `help.md` and run a point-test: actually execute the command/flag/env-var combination it documents and confirm the output still matches what's written. Re-confirm accuracy, don't just re-read the source and assume it's still right. Report any drift found.
