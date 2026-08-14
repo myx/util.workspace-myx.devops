@@ -3,5 +3,5 @@ Info: Abstract workspace for myx.distro & myx.common sdk (with workspace install
 Declares: \
 	distro-image-sync:source-prepare-pull:repo:myx/util.workspace-myx.devops::git@github.com:myx/util.workspace-myx.devops.git \
 	distro-image-sync:source-prepare-pull:list:.:sh-data/repository/remotes-list-myx.devops.txt \
-	magic-team:team-member:skillset/magic-team/keeper-myx:*
+	magic-team:team-member:skillset/keeper-myx:*
 
