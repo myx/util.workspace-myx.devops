@@ -10,7 +10,7 @@ Proposed splitting into two verbs:
 - `--install` — bootstrap verb for a bare/unconfigured target. Working theory: reuse myx.distro-deploy's project-install pipeline (tar-over-ssh, `DeployProjectSsh.fn.sh` idiom) to push tooling, then run the target's own `DistroLocalTools`/`DistroXTools --install-distro-X` remotely.
 - `--manage` — expects an already-configured target (same precondition as `--select-remote`). Open, unresolved: what does it do that plain `--select-remote` doesn't? (reconfigure? status check? re-sync?)
 
-Ruled out: folding VM start/stop (provisioning) into `--manage`/`--install` (different system/risk profile, e.g. prv/cloud.mel's bhyve tooling); reusing `myx.common lib/remoteContext` directly (only an example of the injection pattern — real delivery primitive is myx.distro-deploy's own tar-over-ssh pipeline).
+Ruled out: folding VM start/stop (provisioning) into `--manage`/`--install` (different system/risk profile, e.g. bhyve VM tooling); reusing `myx.common lib/remoteContext` directly (only an example of the injection pattern — real delivery primitive is myx.distro-deploy's own tar-over-ssh pipeline).
 
 One more loose idea floated, not settled: maybe `--manage` is a *persistent context switch* (select a remote once, subsequent commands implicitly target it) rather than a one-shot verb. Design pass paused here at that point, no conclusion.
 
