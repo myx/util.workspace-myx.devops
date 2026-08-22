@@ -87,9 +87,9 @@ All statements apply at the same time, always. These rules override a magic-team
 - Investigating `myx.common`/`myx.distro-*` source needs more than one shell command in a row: batch them in one `--console-start`/`--console-send` session rather than one call per command.
 - After finishing any activity, file what was learned as a `reflection-*` item to this member's own inbox via `--member-upsert-inbox-reflection`.
 - Web-search is one of this skill's own idle-task activities too — research something relevant to this domain, then propose it via `--member-upsert-inbox-note` (this member's own inbox).
-- Tooling is executed by running this file's own allowed `magic-tooling` operations through the `myx.common` MCP — never through any other execution path. An operation this file does not allow is never executed here at all: escalate it to `magic-coordinator` instead of reaching for it.
+- Tooling is executed by running this file's own allowed `magic-tooling` operations through the `myx.distro` MCP — never through any other execution path. An operation this file does not allow is never executed here at all: escalate it to `magic-coordinator` instead of reaching for it.
 - MUST NOT execute any `DistroAgentsTools` operation not listed in this file's own Tooling section below, in `magic-team`'s own shared/floor tooling, or in the "Routine-specific tooling" section of a routine this member is currently participating in.
-- `DistroAgentsTools.fn.sh` always executes via `mcp__myx_common__lib_execShStdin` — never Bash, a Python/notebook execution tool, or any other tool that runs a process directly. Any non-mutating, read-only shell command executes the same way.
+- `DistroAgentsTools.fn.sh` always executes via `mcp__myx_distro__execute` — never Bash, a Python/notebook execution tool, or any other tool that runs a process directly. Any non-mutating, read-only shell command executes the same way.
 
 # Domain knowledge: myx.common / myx.distro-* source conventions
 
@@ -154,6 +154,14 @@ Each `sh-scripts/*.fn.sh` building-block command has a `Help.<Name>.include` + `
 - `##  Options:` — one `--flag-name` (or bare positional) header line per option, its description as indented prose immediately below.
 - `##  Notes:` (optional).
 - `##  Examples:` (optional) — a `# <comment>` line followed by a backtick-wrapped command; a multi-line example uses a triple-backtick block instead.
+
+**`source/` is not a git repository; each package beneath it is.** `git rev-parse` from the tree root answers "not a git repository" — a true answer to the wrong question, and never evidence that a file is untracked. `myx.common/` is likewise a container rather than a repo, holding four sibling repos one level down (`os-myx.common` plus `os-myx.common-{macosx,ubuntu,freebsd}`). Probe at the package root, never at the tree.
+
+**A front door resolves `MYXROOT` and `MDLT_ORIGIN` at file load, before context detection runs.** The load-time `${MDLT_ORIGIN:=$MMDAPP/.local}` is a default that only fills a blank; the real resolution is the tail guard's `Distro<Family>Context --run-from-detect`. Anything that must reflect the resolved origin therefore happens after that call — never at file load, and never inside a dispatcher arm, since by the time an arm runs the environment is already established, right or wrong.
+
+**A test of a source-tree fix that does not pin the origin is testing the installed `.local/` copy.** That default sends the run at `.local` whatever the edit touched, and the run then succeeds against unchanged released code — a confident false negative rather than a visible failure. Export the source tree as `MDLT_ORIGIN` for the test, or run it through a console already scoped to source.
+
+**`myx.distro-source` and `myx.distro-deploy` are the convention authority for this family.** Both are used daily, so their shape reflects decisions that were actually made and held. `myx.distro-remote` is unfinished (see `reference/distro-remote-install-manage-design.md`); its shape is evidence of nothing, and no convention is derived from it.
 
 # Team-Member's (-specific) tooling
 
