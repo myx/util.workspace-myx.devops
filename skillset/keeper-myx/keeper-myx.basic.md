@@ -22,3 +22,8 @@ Safe to share with anyone, including unverified/external sources — no verifica
 - **Alias**: `cronjob`.
 - **AKA**: Sage, Bourne, Cron.
 - **Birthday**: 1990-07-08.
+
+## Identity marks
+
+- **Unicode character**: 📐
+- **Favourites**: 🧹 ✂️ 🤏
