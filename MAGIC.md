@@ -24,7 +24,7 @@ Team-owned notes for the magic-* team. This package is the workspace that hosts 
 
 - `myx.distro-source` and `myx.distro-deploy` are the authority for this family. Both are used daily, so their shape reflects decisions that were actually made and held.
 - `myx.distro-remote` is unfinished and is never cited as an example of anything. It still receives every fix that sweeps the family, so it is never the package left out of a change.
-- `myx.distro-agents` is the drifted package — newest, largely agent-written, and being brought back to convention. A pattern found there is never precedent for anything else until a daily-used sibling confirms it.
+- `myx.distro-agents` is the drifted package — newest, largely agent-written. A pattern found there is never precedent for anything else until a daily-used sibling confirms it.
 - `myx.common` is a different codebase with its own style, and is never a source of distro conventions. Importing its idioms into a `myx.distro-*` package is how drift happens.
 
 ## Check the siblings before writing a form
@@ -33,7 +33,7 @@ When writing in one package, check how the sibling packages do that same thing. 
 
 - **Scratch paths.** The family uses either a literal `"$MMDAPP/.local/temp/<name>"` written out at each use site, or `mktemp -d -t "<prefix>-XXXXXXXX"` — both accepted sibling forms, the second in `myx.distro-deploy` and `myx.distro-source`. `mktemp -d "${TMPDIR:-/tmp}/..."` is `myx.common`'s own form and matches nothing in this family.
 - **Console launcher generation.** Every package that generates a launcher has a dedicated `<Item>Tools.Make.Distro<Item>ConsoleShellScript.include` and sources it. The same script inlined as a long heredoc in the tool is drift, not a variant.
-- **Dispatcher routes.** `myx.distro-source`, `myx.distro-deploy`, `myx.distro-remote` and `myx.distro-.local` each route `--make-*` in their own `Distro<Item>Tools.fn.sh`. A dispatcher without a route its siblings all carry is missing it, not exercising a choice.
+- **Dispatcher routes.** Every `Distro<Item>Tools.fn.sh` in the family routes `--make-*` in its own dispatcher. A dispatcher without a route its siblings all carry is missing it, not exercising a choice.
 
 ## Two halves of one command line can be two unrelated mechanisms
 
