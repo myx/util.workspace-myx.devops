@@ -34,3 +34,8 @@ When writing in one package, check how the sibling packages do that same thing. 
 - **Scratch paths.** The family uses either a literal `"$MMDAPP/.local/temp/<name>"` written out at each use site, or `mktemp -d -t "<prefix>-XXXXXXXX"` — both accepted sibling forms, the second in `myx.distro-deploy` and `myx.distro-source`. `mktemp -d "${TMPDIR:-/tmp}/..."` is `myx.common`'s own form and matches nothing in this family.
 - **Console launcher generation.** Every package that generates a launcher has a dedicated `<Item>Tools.Make.Distro<Item>ConsoleShellScript.include` and sources it. The same script inlined as a long heredoc in the tool is drift, not a variant.
 - **Dispatcher routes.** `myx.distro-source`, `myx.distro-deploy`, `myx.distro-remote` and `myx.distro-.local` each route `--make-*` in their own `Distro<Item>Tools.fn.sh`. A dispatcher without a route its siblings all carry is missing it, not exercising a choice.
+
+## Two halves of one command line can be two unrelated mechanisms
+
+- A pipeline joining a `myx.common` command to a `myx.distro-*` tool joins a plain system install to a workspace-bound script. The first is on PATH anywhere and needs no workspace; the second resolves only inside a console session.
+- A command line that reads as one operation therefore has two separate preconditions, and testing one half proves nothing about the other.
