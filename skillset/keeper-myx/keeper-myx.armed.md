@@ -47,15 +47,10 @@ Named procedure blocks. Steps below call them by name. Not separate routines - n
 ## `daily-idle-task` - pick and run one idle activity, log the outcome
 
 Steps:
-1. Pick one at random:
-   - `idle-tasks/improvement-idea.idle.md`
-   - `idle-tasks/help-doc-point-test.idle.md`
-   - `idle-tasks/spec-conformance.idle.md`
-   - `idle-tasks/help-pairing-sweep.idle.md`
-   - `idle-tasks/legacy-shim-check.idle.md`
-2. Run only that candidate's own instructions.
+1. Read this file's own `## Idle-Tasks` section (below) and select one eligible idle-run routine from it: weighted-random by each entry's `weight`, considering only entries whose `min-interval` has elapsed since that routine's last `processed/` run and whose `scope` fits the current duty context. The universal research-own-duties activity is always one more eligible candidate beyond the listed routines.
+2. Run that routine's own procedure — its `keeper-myx.<name>.routine.md` file — following its Steps and Closure steps.
 3. Finding good enough to act on? This skill does it directly — not "idle" until it's done, unlike a relay-only keeper.
-4. Log the activity and its outcome as a new dated file under `processed/` — `processed/<board-item-type>-<date>-<short-topic>.md`, a real board-item type, never an invented word.
+4. Logging the activity and its outcome as a new dated file under `processed/` — `processed/<board-item-type>-<date>-<short-topic>.md`, a real board-item type, never an invented word — is the selected routine's own Closure step; the universal research activity, when selected, logs the same way.
 
 ## `daily-fleet-health-sweep` - read-only live-fleet health check across the user's own private fleet
 
@@ -171,6 +166,23 @@ Each `sh-scripts/*.fn.sh` building-block command has a `Help.<Name>.include` + `
 
 **`myx.distro-agents` is the known-drifted package of this family, and is never cited as precedent.** It was written broadly against the wrong conventions — `myx.common` idioms and nearest-code copying — so a pattern found there is evidence of the drift only, until it has been confirmed against `myx.distro-source`/`myx.distro-deploy`.
 
+**A `*.fn.sh` is a sourceable function file whose success is proven by output, not by exit status.** Sourcing it only defines its function and must complete without error, so it carries no `case "$0"` self-invocation guard that would fail on being sourced. The relative-path form `./DistroAgentsTools.fn.sh` silently no-ops with `rc=0` and reads as success — always invoke the bare function (`DistroAgentsTools …`). Because a clean exit code cannot tell real work apart from that silent no-op, an operation signals success by an injected output sentinel the caller checks for, never by exit status alone; the sentinel is what makes a silent no-op detectable, and the rest of the output stays lean.
+
+**A configuration check tests each setting for presence-and-validity at the point it is used, never a config file's existence.** Touching any scope creates that scope's file, and an empty `KEY=` still passes a bare `--select-default` lookup — so a file existing, and even a key existing, prove nothing about whether a usable value is actually configured. Check the specific setting each operation genuinely consumes, where it consumes it, and treat missing-or-empty as unconfigured.
+
+**Composed parts, briefs and dispatches are real `.md` include files, assembled by the tooling — never prose markers scraped out of a larger document.** A real file is non-fragile, discoverable and editable; place such parts by the same convention as the existing skillset templates the routines already compose from (`magic-team/templates/*.format.md`). When the tooling builds a brief or dispatch from parts, each part is one of these files, not a fenced region a parser has to find inside other text.
+
+## Idle-Tasks
+
+Scheduling policy for this member's idle-run routines: which routine may fire during duty time when no active board item is assigned to run, its relative selection `weight`, its `min-interval` (wall-clock "not more frequent than" cap, measured from that routine's last `processed/` run), and the `scope` it runs against. The `## daily-idle-task` procedure selects from this list — weighted-random among eligible entries — never from a directory listing; a routine not listed here is not idle-run. Weights and min-intervals are provisional defaults pending human-owner ratification (the source idle tasks stated a "one per day" cadence but no explicit weights).
+
+- `keeper-myx.improvement-idea.routine` — weight: 1, min-interval: 24h, scope: `myx.common`/`myx.distro-*` source (`ws-myx-devops`)
+- `keeper-myx.help-doc-point-test.routine` — weight: 1, min-interval: 24h, scope: existing `help.md` docs across `myx.common`/`myx.distro-*`
+- `keeper-myx.help-pairing-sweep.routine` — weight: 1, min-interval: 24h, scope: `bin/*.Common`/OS-variant commands across `myx.common` packages
+- `keeper-myx.legacy-shim-check.routine` — weight: 1, min-interval: 24h, scope: `include/obsolete/user/bin/*` legacy shims
+- `keeper-myx.spec-conformance.routine` — weight: 1, min-interval: 24h, scope: `project.inf`/builder sets across the `myx.distro-*` tree
+- universal research-own-duties activity (web-search per `magic-team/magic-team.armed.md`'s "Duties: three kinds, plus reflection") — weight: 1, min-interval: 24h, scope: this member's own domain — the always-available "one more candidate," not a `.routine.md` file
+
 # Team-Member's (-specific) tooling
 
 Every `magic-tooling` operation this team-member uses. Full syntax and behavior here. Steps use its name only.
@@ -226,7 +238,7 @@ Used to check this file's own definitions against its own goals when it is updat
 
 ### Reference
 
-- `idle-tasks/improvement-idea.idle.md`, `idle-tasks/help-doc-point-test.idle.md`, `idle-tasks/spec-conformance.idle.md`, `idle-tasks/help-pairing-sweep.idle.md`, `idle-tasks/legacy-shim-check.idle.md` — the five daily-idle activity candidates.
+- `keeper-myx.improvement-idea.routine`, `keeper-myx.help-doc-point-test.routine`, `keeper-myx.spec-conformance.routine`, `keeper-myx.help-pairing-sweep.routine`, `keeper-myx.legacy-shim-check.routine` — the five idle-run routine candidates; their scheduling policy is this file's own `## Idle-Tasks` section.
 - `reference/myxcommon-repo-facts.md` — non-obvious environment/layout facts for `source/myx/myx.common` on this dev Mac.
 - `reference/distro-remote-install-manage-design.md` — parked design thread for `myx.distro-remote`'s `--install`/`--manage` verbs.
 - `magic-devops` — owns *running*/operating this tooling for real; hand off execution/deploy tasks there, including the actual run for the daily fleet-health sweep.
@@ -237,4 +249,4 @@ Used to check this file's own definitions against its own goals when it is updat
 
 ### Conventions
 
-- `idle-tasks/*.idle.md` are work-queue/idle-picker state, not baseline active-duty knowledge.
+- Idle-run routines (`keeper-myx.*.routine.md`) are designated idle-run solely by this file's own `## Idle-Tasks` section — a routine file existing does not make it idle-run; being listed there does.

@@ -1,1 +1,0 @@
-Sweep `bin/*.Common`/OS-variant commands across `myx.common`'s packages for help-pairing gaps (a command missing its `help/<name>.help.include` + `<name>.help.md` pair). Report findings as a short list.

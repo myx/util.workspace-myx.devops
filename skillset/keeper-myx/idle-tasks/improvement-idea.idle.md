@@ -1,1 +1,0 @@
-Find one genuine small improvement idea in the myx.common/myx.distro-* source: a missing help pair, a convention violation, an inconsistency between a README and actual behavior. Report it — don't fix it unattended unless it's promoted to assigned work.
