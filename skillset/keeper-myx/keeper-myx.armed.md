@@ -174,7 +174,7 @@ Each `sh-scripts/*.fn.sh` building-block command has a `Help.<Name>.include` + `
 
 ## Idle-Tasks
 
-Scheduling policy for this member's idle-run routines: which routine may fire during duty time when no active board item is assigned to run, its relative selection `weight`, its `min-interval` (wall-clock "not more frequent than" cap, measured from that routine's last `processed/` run), and the `scope` it runs against. The `## daily-idle-task` procedure selects from this list — weighted-random among eligible entries — never from a directory listing; a routine not listed here is not idle-run. Weights and min-intervals are provisional defaults pending human-owner ratification (the source idle tasks stated a "one per day" cadence but no explicit weights).
+Scheduling policy for this member's idle-run routines: which routine may fire during duty time when no active board item is assigned to run, its relative selection `weight`, its `min-interval` (wall-clock "not more frequent than" cap, measured from that routine's last `processed/` run), and the `scope` it runs against. The `## daily-idle-task` procedure selects from this list — weighted-random among eligible entries — never from a directory listing; a routine not listed here is not idle-run. Weights and min-intervals were ratified as-is by the human-owner (2026-09); the chosen defaults reflect that (the source idle tasks stated a "one per day" cadence but no explicit weights).
 
 - `keeper-myx.improvement-idea.routine` — weight: 1, min-interval: 24h, scope: `myx.common`/`myx.distro-*` source (`ws-myx-devops`)
 - `keeper-myx.help-doc-point-test.routine` — weight: 1, min-interval: 24h, scope: existing `help.md` docs across `myx.common`/`myx.distro-*`
