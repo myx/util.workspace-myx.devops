@@ -76,7 +76,6 @@ Used to check this file's own definitions against its own goals when it is updat
 ### Reference
 
 - `keeper-myx.armed.md`'s `## Idle-Tasks` section — the scheduling policy (weight/min-interval/scope) that governs when this routine fires.
-- Migrated to routine form in the 2026-09 idle-task-to-routine refactor.
 
 ### Conventions
 
