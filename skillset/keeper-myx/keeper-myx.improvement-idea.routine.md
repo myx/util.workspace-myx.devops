@@ -3,9 +3,7 @@ executors: keeper-myx
 maintainers: magic-coordinator, magic-librarian, magic-architect
 invitees: none
 ---
-# routine-improvement-idea — the actual procedure
-
-Normative contract: `magic-team/magic-team.shared.md`'s "Armed & Routine contracts" → Routine. This file is a derived skeleton; where the two disagree, `magic-team/magic-team.shared.md` wins.
+# keeper-myx.improvement-idea.routine — the actual procedure
 
 # Summary
 
