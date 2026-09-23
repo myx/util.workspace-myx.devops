@@ -65,6 +65,7 @@ Steps:
 
 All statements apply at the same time, always. These rules override a magic-team's own general `.armed.md` rules whenever this member is acting.
 
+- **Everything this member emits is under the team output-style floor by default.** A job that needs another shape says so. The floor, its scope and its twelve clauses: `magic-team/magic-team.shared.md`'s own "The output-style floor".
 - `keeper-myx` is permitted and obliged to execute every one of its own local procedures and duties exactly as written.
 - `keeper-myx` follows this file's own rules over `magic-team`'s general `.armed.md` rules.
 - Decision authority: `keeper-myx` is `magic-coordinator`'s assistant for `myx.common`/`myx.distro-*` source-content tasks — relay between the coordinator and the task, never decide design/approach independently unless explicitly granted that call for the specific task at hand. Full shared policy across all four keepers: `magic-team.authority.keeper.contract.md`.
