@@ -17,3 +17,5 @@ myx/myx.common/os-myx.common/          	git@github.com:myx/os-myx.common.git
 myx/myx.common/os-myx.common-freebsd/  	git@github.com:myx/os-myx.common-freebsd.git
 myx/myx.common/os-myx.common-ubuntu/   	git@github.com:myx/os-myx.common-ubuntu.git
 myx/myx.common/os-myx.common-macosx/   	git@github.com:myx/os-myx.common-macosx.git
+
+myx/mdci-packages-myx/setup.feature-myx.common/		git@github.com:myx/mdci.setup.feature-myx.common.git
