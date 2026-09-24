@@ -19,3 +19,4 @@ myx/myx.common/os-myx.common-ubuntu/   	git@github.com:myx/os-myx.common-ubuntu.
 myx/myx.common/os-myx.common-macosx/   	git@github.com:myx/os-myx.common-macosx.git
 
 myx/mdci-packages-myx/setup.feature-myx.common/		git@github.com:myx/mdci.setup.feature-myx.common.git
+myx/mdci-packages-myx/setup.feature-monit/			git@github.com:myx/mdci.setup.feature-monit.git
