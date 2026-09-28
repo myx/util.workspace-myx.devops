@@ -20,3 +20,4 @@ myx/myx.common/os-myx.common-macosx/   	git@github.com:myx/os-myx.common-macosx.
 
 myx/mdci-packages-myx/setup.feature-myx.common/		git@github.com:myx/mdci.setup.feature-myx.common.git
 myx/mdci-packages-myx/setup.feature-monit/			git@github.com:myx/mdci.setup.feature-monit.git
+myx/mdci-packages-myx/build.feature-java.compile/	git@github.com:myx/mdci.build.feature-java.compile.git
