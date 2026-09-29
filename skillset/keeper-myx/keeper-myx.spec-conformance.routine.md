@@ -22,7 +22,7 @@ invitees: none
 
 # Steps
 
-Exact instructions. Execute in order, every step, literally as written — not less, not more. If a step cannot execute as written: escalate, or fail loud.
+Exact instructions. Execute in order, every step, literally as written — not less, not more. If a step cannot execute as written: escalate it, and never skip it silently.
 
 1. **pick-one-project**: Pick one project.
 2. **check-declares-vs-reality**: Check whether its `project.inf`/builder set actually matches what it declares (`Requires`/`Provides`/`Declares`/etc.) against its real behavior and file layout.

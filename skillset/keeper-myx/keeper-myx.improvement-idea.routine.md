@@ -22,7 +22,7 @@ invitees: none
 
 # Steps
 
-Exact instructions. Execute in order, every step, literally as written — not less, not more. If a step cannot execute as written: escalate, or fail loud.
+Exact instructions. Execute in order, every step, literally as written — not less, not more. If a step cannot execute as written: escalate it, and never skip it silently.
 
 1. **find-one-idea**: Find one genuine small improvement idea in the `myx.common`/`myx.distro-*` source: a missing help pair, a convention violation, or an inconsistency between a README and actual behavior. Ground it in real source, not a guess.
 2. **report-not-fix**: Report the idea — do not fix it unattended unless it is promoted to assigned work.

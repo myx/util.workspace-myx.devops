@@ -22,7 +22,7 @@ invitees: none
 
 # Steps
 
-Exact instructions. Execute in order, every step, literally as written — not less, not more. If a step cannot execute as written: escalate, or fail loud.
+Exact instructions. Execute in order, every step, literally as written — not less, not more. If a step cannot execute as written: escalate it, and never skip it silently.
 
 1. **pick-one-help-doc**: Pick one existing `help.md`.
 2. **run-the-point-test**: Actually execute the command/flag/env-var combination it documents, and confirm the output still matches what is written. Re-confirm accuracy by running it — do not just re-read the source and assume it is still right.

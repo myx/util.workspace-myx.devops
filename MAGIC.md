@@ -52,3 +52,8 @@ When writing in one package, check how the sibling packages do that same thing. 
 
 - **Several agent sessions edit the same files in this tree at the same time, with no lock between them.** A fact measured early in a session can be contradicted later in that same session by a file another session has since rewritten, and neither reading is wrong — they are readings of two different files that share a path.
 - **When two measurements of the same thing disagree, the tiebreaker is the file's timestamp, not the more careful-looking reading.** Re-run the measurement rather than reasoning about which one to trust, and re-read the file immediately before writing a fact about it down. This is a property of how work reaches this tree, not an occasional accident, so it applies to every session here.
+
+## `mdci-packages-myx` is edited here and synced out
+
+- This workspace holds the primary copy. `ws-myx.prv-farm` and `util.workspace-mdev9-admin` hold synced copies.
+- Edit here, then sync the other two. `setup.feature-monit` and `setup.feature-myx.common` are git repositories, so the other copies pull them; the rest is copied.

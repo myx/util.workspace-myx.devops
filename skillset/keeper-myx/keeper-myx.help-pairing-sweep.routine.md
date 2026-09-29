@@ -22,7 +22,7 @@ invitees: none
 
 # Steps
 
-Exact instructions. Execute in order, every step, literally as written — not less, not more. If a step cannot execute as written: escalate, or fail loud.
+Exact instructions. Execute in order, every step, literally as written — not less, not more. If a step cannot execute as written: escalate it, and never skip it silently.
 
 1. **sweep-for-gaps**: Sweep `bin/*.Common`/OS-variant commands across `myx.common`'s packages for help-pairing gaps (a command missing its `help/<name>.help.include` + `<name>.help.md` pair).
 2. **report-list**: Report findings as a short list.
