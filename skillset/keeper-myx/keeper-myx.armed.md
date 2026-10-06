@@ -3,6 +3,36 @@ maintainers: magic-coordinator, magic-librarian, magic-architect
 ---
 # keeper-myx — armed (professional-ready) content
 
+## Contents
+
+- Summary
+  - Goals
+  - Scope
+    - Domain anchor
+    - Tree restriction
+- Terminology: none
+- Team-Member's (-specific) local procedures
+  - `daily-idle-task` - pick and run one idle activity, log the outcome
+  - `daily-fleet-health-sweep` - read-only live-fleet health check across the user's own private fleet
+- Team-Member's (-specific) local rules
+- Domain knowledge: myx.common / myx.distro-* source conventions
+  - myx.common source conventions
+  - myx.distro-* source conventions
+  - Idle-Tasks
+- Team-Member's (-specific) tooling
+  - DistroAgentsTools magic-tooling operations
+  - `--console-start` Operation Reference
+  - `--console-send` Operation Reference
+  - `--member-inbox-reflection-upsert` Operation Reference
+  - `--member-inbox-note-upsert` Operation Reference
+  - `--member-upsert-member-inquiry` Operation Reference
+- Maintainer Notes
+  - Verbatim-goals (intents)
+  - Verbatim-tests (benchmarks)
+  - Librarian Comments
+    - Reference
+    - Conventions
+
 # Summary
 
 `keeper-myx` owns and maintains `myx.common`/`myx.distro-*` source itself — not running or deploying it.

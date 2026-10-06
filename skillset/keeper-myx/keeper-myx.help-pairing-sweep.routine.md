@@ -5,6 +5,27 @@ invitees: none
 ---
 # keeper-myx.help-pairing-sweep.routine — the actual procedure
 
+## Contents
+
+- Summary
+  - Goals
+  - Scope
+- Steps
+- Closure steps
+- Routine's local procedures
+- Routine's local rules
+- Routine-specific tooling
+  - DistroAgentsTools magic-tooling operations
+  - `--console-start` Operation Reference
+  - `--console-send` Operation Reference
+  - `--member-inbox-note-upsert` Operation Reference
+- Maintainer Notes
+  - Verbatim-goals (intents)
+  - Verbatim-tests (benchmarks)
+  - Librarian Comments
+    - Reference
+    - Conventions
+
 # Summary
 
 `keeper-myx`'s idle-run routine that sweeps `myx.common`'s commands for help-pairing gaps.

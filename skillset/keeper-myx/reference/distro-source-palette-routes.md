@@ -4,6 +4,14 @@ What the generated VSCode task palette exposes for a `myx.distro-*` workspace, a
 
 **This file records what the entries do. What any of them *should* do is not settled here** — whether `🛫 Ingest Source Changes` is meant to be a stamp-advancing publish of unrebuilt indices is an open question with the human-owner. A reader meeting a complete-looking map must not read it as a settled design.
 
+## Contents
+
+- Read the generated file, not the fragments
+- The entries
+- Two markers, and why "doesn't rebuild" is not one category
+- Age
+- This table is not an explanation for a stale-index symptom
+
 ## Read the generated file, not the fragments
 
 The palette is assembled from four `*.Make.VSCodeTasksFragment.include` fragments (`SourceTools`, `DeployTools`, `RemoteTools`, `AgentsTools`), but **a workspace renders only the fragments whose packages it has installed.** Enumerating the fragments therefore answers a different question from enumerating the workspace's own generated `*.code-workspace`, and nothing in either result says which question was answered. The generated file is the palette a user is actually presented with, and is the one to read.

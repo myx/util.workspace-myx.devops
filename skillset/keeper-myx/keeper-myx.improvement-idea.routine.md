@@ -5,6 +5,25 @@ invitees: none
 ---
 # keeper-myx.improvement-idea.routine — the actual procedure
 
+## Contents
+
+- Summary
+  - Goals
+  - Scope
+- Steps
+- Closure steps
+- Routine's local procedures
+- Routine's local rules
+- Routine-specific tooling
+  - DistroAgentsTools magic-tooling operations
+  - `--member-inbox-note-upsert` Operation Reference
+- Maintainer Notes
+  - Verbatim-goals (intents)
+  - Verbatim-tests (benchmarks)
+  - Librarian Comments
+    - Reference
+    - Conventions
+
 # Summary
 
 `keeper-myx`'s idle-run routine that surfaces one genuine small improvement idea in `myx.common`/`myx.distro-*` source and reports it.

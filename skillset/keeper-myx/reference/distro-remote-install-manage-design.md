@@ -4,6 +4,13 @@ In-progress design thread for splitting `myx.distro-remote`'s stubbed `--manage`
 
 `DistroRemoteConsole` (`myx.distro-remote/sh-scripts/RemoteConsole.fn.sh`) originally had two long-standing stubs, `--manage` and `--interactive`, both just `echo "not implemented yet"`. `--manage` also looked like a reserved `myx.distro-manage` package slot in `--start-{source|deploy|remote|manage}-console` — confirmed wrong, no separate manage package exists; source/deploy/remote each have their own `DistroXTools.fn.sh` and that pattern isn't duplicated for "manage".
 
+## Contents
+
+- 2026-07-15: first grasp, not settled
+- 2026-07-16: both open questions grounded further, still not settled
+- 2026-07-16 second pass: evidence tilts toward option (a)
+- 2026-07-17: open question 2 DECIDED, open question 1 reopened wider, then parked
+
 ## 2026-07-15: first grasp, not settled
 
 Proposed splitting into two verbs:
