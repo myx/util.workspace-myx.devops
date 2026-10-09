@@ -2,6 +2,12 @@
 
 Team-owned notes for the magic-* team. This package is the workspace that hosts the whole `myx.distro-*` family, so what belongs here is the relationship between the packages, and what counts as work on the family at all. Each package's own `MAGIC.md` carries its own internals.
 
+## Where things live
+
+- `sh-scripts/install-myx.devops-workspace.sh` is the installer. It holds the workspace config inline and passes it to `myx.distro-.local`'s `workspace-install.sh` with `--force --git-clone --config-stdin`.
+- That config names only `source` directives. It sets `MDLT_CONSOLE_ORIGIN` to `source`, so the consoles run the tools from this workspace's own `source/` tree.
+- The repositories pulled by `source-prepare-pull` are listed in a file that `project.inf` names in its `distro-image-sync:...:list:` declaration.
+
 ## What ships is the deliverable; this machine's own state is not
 
 - Local config, allowlists, caches and settings exist only on this one computer. None of it reaches a client, so a change there fixes nothing and is not the work.
@@ -42,18 +48,14 @@ When writing in one package, check how the sibling packages do that same thing. 
 
 ## Tests live in their own project, and this family does not have one yet
 
-- **The estate's pattern is a distinct project holding a domain's tests**, separate from the packages under test and carrying what those tests need — testbed, harness, fake data, and the infra to run them. The established one is `/Volumes/workspace/myx/unit-test`, an Eclipse Java project whose `magic-tester/` subfolder is the dedicated home for magic-team testing tooling; it covers AE3 framework and rendering behaviour. Measured: `myx.distro-*` and `myx.common` are not in its scope — zero hits for `myx.distro`, `myx.common` or `distro-agents` anywhere under it.
-- **So a `myx.distro-*` package carrying no test or build machinery is that pattern holding, not a gap in the package.** The workspace contains the project; the project does not depend on the workspace. Assets shipped inside a package would invert that — it would need a workspace around it to be verifiable, and stop being a thing that can be cloned and used on its own. Measured across the tree: not one test file, fixture, golden output or expected-result asset in any `myx.distro-*` package nor in `myx.common`; every `*test*`/`*spec*`/`fixture*` name under `source/myx/` is board prose, an inbox item or a skill's own idle-task filename, and the only in-package hits are the four `*Context.SetInputSpec.include` dispatch specs, which are code. `myx.distro-agents` is the public, specific artifact, and reading its emptiness as a defect points the fix at the wrong layer.
+- **The estate's pattern is a distinct project holding a domain's tests**, separate from the packages under test and carrying what those tests need — testbed, harness, fake data, and the infra to run them. The existing one covers AE3 framework and rendering behaviour; `myx.distro-*` and `myx.common` are not in its scope.
+- **So a `myx.distro-*` package carrying no test or build machinery is that pattern holding, not a gap in the package.** The workspace contains the project; the project does not depend on the workspace. Assets shipped inside a package would invert that — it would need a workspace around it to be verifiable, and stop being a thing that can be cloned and used on its own.
+- **Some packages do carry test rigs.** `myx.distro-agents/sh-test/` holds about 110 `*.test.sh` rigs, and `myx.distro-deploy/sh-test/` holds `ImageDeployRemoteStatusCheck.test.sh`. The other `myx.distro-*` packages carry none.
 - **The gap is that this family has no such test project of its own, and its place would be `ws-myx-devops`.** That is the thing missing — not anything inside the packages.
-- **What a session does in the meantime is a differential run, which is a harness built and thrown away.** Exercise the OLD file and the NEW file over the same input and compare the outputs byte for byte; that is what made the Slack-converter work's "additive only" claims checkable rather than asserted. The cost is the repetition: several sessions in one night each hand-built a scratch data root, a stub console, a throwaway git remote, a before/after driver and seeded fixtures, then discarded all of it. That is a better statement of what is missing than any count of absent files.
-- **Keep the pre-change copy before editing**, and give a comment-only edit the same run. The first is a property of the method — once the file is overwritten the baseline is gone and cannot be reconstructed from the new one. The second is not about comments changing behaviour but about a line-range splice into a script doing so: the `AgentsSlackBlocksBuild.awk` header correction was verified this way and would have caught a mis-spliced range that reading the diff would not.
+- **What a session does in the meantime is a differential run, which is a harness built and thrown away.** Exercise the OLD file and the NEW file over the same input and compare the outputs byte for byte. That makes an "additive only" claim checkable rather than asserted. The cost is that each session rebuilds the same scratch data root, stub console, throwaway git remote, before/after driver and fixtures, then discards them.
+- **Keep the pre-change copy before editing**, and give a comment-only edit the same run. The first is a property of the method — once the file is overwritten the baseline is gone and cannot be reconstructed from the new one. The second is not about comments changing behaviour but about a line-range splice into a script doing so: a mis-spliced range shows in the run and not in a read of the diff.
 
 ## A measurement is only as fresh as the session that took it
 
 - **Several agent sessions edit the same files in this tree at the same time, with no lock between them.** A fact measured early in a session can be contradicted later in that same session by a file another session has since rewritten, and neither reading is wrong — they are readings of two different files that share a path.
 - **When two measurements of the same thing disagree, the tiebreaker is the file's timestamp, not the more careful-looking reading.** Re-run the measurement rather than reasoning about which one to trust, and re-read the file immediately before writing a fact about it down. This is a property of how work reaches this tree, not an occasional accident, so it applies to every session here.
-
-## `mdci-packages-myx` is edited here and synced out
-
-- This workspace holds the primary copy. `ws-myx.prv-farm` and `util.workspace-mdev9-admin` hold synced copies.
-- Edit here, then sync the other two. `setup.feature-monit` and `setup.feature-myx.common` are git repositories, so the other copies pull them; the rest is copied.

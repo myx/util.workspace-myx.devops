@@ -27,6 +27,13 @@ Linux, with `wget`:
 The installer clones over git, so the machine needs `git` and an SSH key that can
 read the configured repositories.
 
+Use it to set up a machine for work on the `myx.distro` and `myx.common` SDK.
+
+The installer always runs with `--force`. Run again on an existing workspace, it
+updates the installed toolsets, and that discards local edits in the installed copies
+under `.local/`. The consoles run the tools from the workspace's own `source/`
+tree, so make your edits there.
+
 ## What you get
 
 Five console launchers in the workspace root, each entering a different context:
