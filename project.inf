@@ -6,4 +6,6 @@ Declares: \
 	magic-team:team-member:skillset/keeper-myx:* \
 	magic-team:permissions:namespace:.:allow-write:keeper-myx \
 	magic-team:permissions:workspace:.:allow-write:keeper-myx:source/myx/** \
+	magic-team:testing:myx.distro-*:sh-test:* \
+	magic-team:testing:util.workspace-myx.devops:sh-test:* \
 
