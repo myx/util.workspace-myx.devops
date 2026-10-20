@@ -1,7 +1,11 @@
 ---
+type: routine
 executors: keeper-myx
 maintainers: magic-coordinator, magic-librarian, magic-architect
 invitees: none
+requires-session-kind: standalone
+input-scan-def: none
+review-by: inherit
 ---
 # keeper-myx.help-pairing-sweep.routine — the actual procedure
 
@@ -10,6 +14,7 @@ invitees: none
 - Summary
   - Goals
   - Scope
+- Opening steps
 - Steps
 - Closure steps
 - Routine's local procedures
@@ -40,6 +45,10 @@ invitees: none
   - Enumerate commands and flag any missing help pair.
 - Doesn't:
   - Author the missing help pair unattended — it reports; authoring is separate assigned work.
+
+# Opening steps
+
+None of its own: the Opening steps of the routine it inherits from run first (its session kind's, or `magic-team.inline.routine`'s when it runs inline).
 
 # Steps
 

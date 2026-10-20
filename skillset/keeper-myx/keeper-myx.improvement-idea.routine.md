@@ -1,7 +1,11 @@
 ---
+type: routine
 executors: keeper-myx
 maintainers: magic-coordinator, magic-librarian, magic-architect
 invitees: none
+requires-session-kind: standalone
+input-scan-def: none
+review-by: inherit
 ---
 # keeper-myx.improvement-idea.routine — the actual procedure
 
@@ -10,6 +14,7 @@ invitees: none
 - Summary
   - Goals
   - Scope
+- Opening steps
 - Steps
 - Closure steps
 - Routine's local procedures
@@ -38,6 +43,10 @@ invitees: none
   - Surface exactly one real, source-grounded improvement candidate per pass and report it.
 - Doesn't:
   - Fix it unattended — the fix happens only once the idea is promoted to assigned work, never self-approved into action from this idle pass.
+
+# Opening steps
+
+None of its own: the Opening steps of the routine it inherits from run first (its session kind's, or `magic-team.inline.routine`'s when it runs inline).
 
 # Steps
 

@@ -1,7 +1,11 @@
 ---
+type: routine
 executors: keeper-myx
 maintainers: magic-coordinator, magic-librarian, magic-architect
 invitees: none
+requires-session-kind: standalone
+input-scan-def: none
+review-by: inherit
 ---
 # keeper-myx.spec-conformance.routine — the actual procedure
 
@@ -10,6 +14,7 @@ invitees: none
 - Summary
   - Goals
   - Scope
+- Opening steps
 - Steps
 - Closure steps
 - Routine's local procedures
@@ -40,6 +45,10 @@ invitees: none
   - Verify one project's declared metadata against its real behavior/layout.
 - Doesn't:
   - Rewrite the `project.inf`/builders unattended — it reports the mismatch.
+
+# Opening steps
+
+None of its own: the Opening steps of the routine it inherits from run first (its session kind's, or `magic-team.inline.routine`'s when it runs inline).
 
 # Steps
 

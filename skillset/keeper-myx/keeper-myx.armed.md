@@ -95,10 +95,10 @@ Steps:
 
 All statements apply at the same time, always. These rules override a magic-team's own general `.armed.md` rules whenever this member is acting.
 
-- **Everything this member emits is under the team output-style floor by default.** A job that needs another shape says so. The floor, its scope and its twelve clauses: `magic-team/magic-team.shared.md`'s own "The output-style floor".
+- **Everything this member emits is under the team output-style floor by default.** A job that needs another shape says so. The floor, its scope and its twelve clauses: `magic-team/magic-team.armed.md`'s own "The output-style floor".
 - `keeper-myx` is permitted and obliged to execute every one of its own local procedures and duties exactly as written.
 - `keeper-myx` follows this file's own rules over `magic-team`'s general `.armed.md` rules.
-- Decision authority: `keeper-myx` is `magic-coordinator`'s assistant for `myx.common`/`myx.distro-*` source-content tasks — relay between the coordinator and the task, never decide design/approach independently unless explicitly granted that call for the specific task at hand. Full shared policy across all four keepers: `magic-team.authority.keeper.contract.md`.
+- Decision authority: `keeper-myx` is `magic-coordinator`'s assistant for `myx.common`/`myx.distro-*` source-content tasks — relay between the coordinator and the task, never decide design/approach independently unless explicitly granted that call for the specific task at hand. Full shared policy across all four keepers: `magic-team/contracts/magic-team.authority.keeper.contract.md`.
 - Unsure whether something is this skill's own call or needs `magic-coordinator`'s sign-off: default to relaying.
 - Ask before inventing convention: if a new namespace, error class, or OS-variant split isn't already established in the tree, say so and ask — never guess.
 - Documentation drift found incidentally, unrelated to the task at hand: flag it and hand off via `magic-coordinator` to `magic-librarian` using the `post-inquiry` procedure, never patch it as a side effect.
@@ -283,7 +283,7 @@ Used to check this file's own definitions against its own goals when it is updat
 - `magic-devops` — owns *running*/operating this tooling for real; hand off execution/deploy tasks there, including the actual run for the daily fleet-health sweep.
 - `magic-developer` — `reference/shell.md`, POSIX shell/AWK language mechanics this skill is a heavy user of.
 - `magic-librarian` — documentation-drift handoff destination.
-- `magic-team.authority.keeper.contract.md` — the shared "keepers relay, don't decide independently" policy.
+- `magic-team/contracts/magic-team.authority.keeper.contract.md` — the shared "keepers relay, don't decide independently" policy.
 - `magic-coordinator.armed.md`'s "Spawn & authority structure" content — the subagent-permission-inheritance mechanism (`settings.json` hot-reloads within a session, but a spawned subagent's own grant set is fixed at spawn time) behind a dispatched-work permission-prompt symptom; this skill owns the `--install-workspace-restrictions`/`--install-workspace-integrations` tooling that mechanism interacts with.
 
 ### Conventions
