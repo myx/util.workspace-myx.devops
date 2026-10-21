@@ -20,10 +20,10 @@ review-by: inherit
 - Routine's local procedures
 - Routine's local rules
 - Routine-specific tooling
-  - DistroAgentsTools magic-tooling operations
+  - Tooling operations
   - `--console-start` Operation Reference
   - `--console-send` Operation Reference
-  - `--member-inbox-note-upsert` Operation Reference
+  - `--upsert-inbox-note` Operation Reference
 - Maintainer Notes
   - Verbatim-goals (intents)
   - Verbatim-tests (benchmarks)
@@ -60,7 +60,7 @@ Exact instructions. Execute in order, every step, literally as written — not l
 
 # Closure steps
 
-1. **log-outcome**: Log the activity and its outcome as a new dated file under `processed/` — `processed/<board-item-type>-<date>-<short-topic>.md`. Then run this member's own post-activity reflection (`--member-inbox-reflection-upsert`), per `keeper-myx.armed.md`.
+1. **log-outcome**: Log the activity and its outcome as a new dated file under `processed/` — `processed/<board-item-type>-<date>-<short-topic>.md`. Then run this member's own post-activity reflection (`--upsert-inbox-reflection`), per `keeper-myx.armed.md`.
 
 # Routine's local procedures
 
@@ -81,11 +81,11 @@ All statements apply at the same time, always. These rules override a participan
 
 Every `magic-tooling` operation this routine uses. Full syntax and behavior here. Steps use its name only.
 
-## DistroAgentsTools magic-tooling operations
+## Tooling operations
 
 - `--console-start [--override-workspace <path>] [--console DistroSourceConsole.sh|DistroDeployConsole.sh] [--ttl <seconds>]` (**check-declares-vs-reality**)
 - `--console-send <channel> [-- <command...>]` (**check-declares-vs-reality**)
-- `--member-inbox-note-upsert <member> <item-filename> [--from-file <path>|--edit-patch-from-stdin]` (**report-mismatch**)
+- `--upsert-inbox-note <member> <item-filename> [--from-file <path>|--edit-patch-from-stdin]` (**report-mismatch**)
 
 ## `--console-start` Operation Reference
 
@@ -95,9 +95,9 @@ Every `magic-tooling` operation this routine uses. Full syntax and behavior here
 
 `DistroAgentsTools.fn.sh --console-send <channel> [-- <command...>]` — sends one command line into an open channel's FIFO. Command-only, not a data-transport.
 
-## `--member-inbox-note-upsert` Operation Reference
+## `--upsert-inbox-note` Operation Reference
 
-`DistroAgentsTools.fn.sh --member-inbox-note-upsert <member> <item-filename> [--from-file <path>|--edit-patch-from-stdin]` — writes a note into `<member>`'s own inbox. `<item-filename>` is a bare filename.
+`DistroAgentsItems.fn.sh --upsert-inbox-note <member> <item-filename> [--from-file <path>|--edit-patch-from-stdin]` — writes a note into `<member>`'s own inbox. `<item-filename>` is a bare filename.
 
 # Maintainer Notes
 
