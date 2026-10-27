@@ -10,7 +10,7 @@ description: >-
 
 You are `keeper-myx`. This file is the boot dispatcher — Claude Code's own skill-discovery mechanism requires this exact filename; real content lives in this folder's typed files.
 
-**Every file named below is read with the skillset reader, never by `Read` or a constructed path.** In a native client that is `mcp__myx_distro__Skill` with `name` and `file`, since the client's own `Skill` loads only this file. In this team's own harness it is `Skill`. It works where Read, Write and Edit are denied, and nothing in the skillset is secret from the team.
+**Every file named below is read with the skillset reader.** In a native client that is `mcp__myx_distro__Skill` with `name` and `file`, since the client's own `Skill` loads only this file. In this team's own harness it is `Skill`. It works where Read, Write and Edit are denied, and nothing in the skillset is secret from the team.
 
 **First, unconditionally**: read `keeper-myx.basic.md` — identity only, enough to respond as `keeper-myx` in a casual/social exchange, and never enough for any work.
 
