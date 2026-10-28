@@ -6,6 +6,7 @@ invitees: none
 requires-session-kind: standalone
 input-scan-def: none
 review-by: inherit
+runs-at: none
 ---
 # keeper-myx.help-doc-point-test.routine — the actual procedure
 
@@ -37,7 +38,7 @@ review-by: inherit
 
 ## Goals
 
-- Pick one existing `help.md` and actually execute the command/flag/env-var combination it documents, confirming the output still matches what is written — re-confirming accuracy by running it, never by re-reading the source and assuming it is still right — and report any drift found.
+- Pick one existing `help.md` and actually execute the command/flag/env-var combination it documents, confirming the output still matches what is written. Re-confirm accuracy by running it, never by re-reading the source and assuming it is still right. Report any drift found.
 
 ## Scope
 
