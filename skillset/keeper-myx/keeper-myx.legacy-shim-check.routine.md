@@ -6,6 +6,7 @@ invitees: none
 requires-session-kind: standalone
 input-scan-def: none
 review-by: inherit
+runs-at: none
 ---
 # keeper-myx.legacy-shim-check.routine — the actual procedure
 
