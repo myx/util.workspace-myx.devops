@@ -50,7 +50,7 @@ maintainers: magic-coordinator, magic-librarian, magic-architect
   - Run for anyone, implicitly — auto-triggers on writing/reviewing `myx.common` or `myx.distro-*` source itself, or work under `ws-myx.prv-farm`'s `prv` namespace; not gated behind an explicit invocation.
   - Own `DistroAgentsTools.fn.sh` interface changes — this skill owns its source.
   - Run the `daily-fleet-health-sweep` local procedure as its standing daily-iteration duty.
-  - Keeper posture: always attend roll call, and always get a work-session dispatch, since the idle menu never runs dry. Report the most recent `processed/` entry, and take ad-hoc asks like a reporting member.
+  - Keeper posture: always attend roll call, and always get a work-session dispatch, since the idle menu never runs dry. Report the most recent log item in this member's own inbox, and take ad-hoc asks like a reporting member.
 - Doesn't:
   - Execute, deploy, or operate against real hardware — hand off to `magic-devops`. This skill owns writing and maintaining source, not running it.
   - Invent a new namespace, error class, or OS-variant split that isn't already established in the tree — ask first.
@@ -77,10 +77,10 @@ Named procedure blocks. Steps below call them by name. Not separate routines - n
 ## `daily-idle-task` - pick and run one idle activity, log the outcome
 
 Steps:
-1. Read this file's own `## Idle-Tasks` section (below), and select one eligible idle-run routine from it, weighted-random by each entry's `weight`. Consider only entries whose `min-interval` has elapsed since that routine's last `processed/` run, and whose `scope` fits the current duty context. The universal research-own-duties activity is always one more eligible candidate beyond the listed routines.
+1. Read this file's own `## Idle-Tasks` section (below), and select one eligible idle-run routine from it, weighted-random by each entry's `weight`. Consider only entries whose `min-interval` has elapsed since that routine's last log item in this member's own inbox, and whose `scope` fits the current duty context. The universal research-own-duties activity is always one more eligible candidate beyond the listed routines.
 2. Run that routine's own procedure — its `keeper-myx.<name>.routine.md` file — following its Steps and Closure steps.
 3. Finding good enough to act on? This skill does it directly — not "idle" until it's done, unlike a relay-only keeper.
-4. The selected routine's own Closure step logs the activity and its outcome as a new dated file under `processed/`. The file is `processed/<board-item-type>-<date>-<short-topic>.md`, with a real board-item type, never an invented word. The universal research activity, when selected, logs the same way.
+4. The selected routine's own Closure step logs the activity and its outcome as a new `note-*` own-inbox log item, through `--upsert-inbox-note`, named `note-<date>-<short-topic>.md`. The universal research activity, when selected, logs the same way.
 
 ## `daily-fleet-health-sweep` - read-only live-fleet health check across the user's own private fleet
 
@@ -217,7 +217,7 @@ Each `sh-scripts/*.fn.sh` building-block command has a `Help.<Name>.include` + `
 Scheduling policy for this member's idle-run routines:
   - which routine may fire during duty time when no active board item is assigned to run.
   - its relative selection `weight`.
-  - its `min-interval`: a wall-clock "not more frequent than" cap, measured from that routine's last `processed/` run.
+  - its `min-interval`: a wall-clock "not more frequent than" cap, measured from that routine's last log item in this member's own inbox.
   - the `scope` it runs against. The `## daily-idle-task` procedure selects from this list — weighted-random among eligible entries — never from a directory listing; a routine not listed here is not idle-run. Weights and min-intervals are provisional defaults pending human-owner ratification.
 
 - `keeper-myx.improvement-idea.routine` — weight: 1, min-interval: 24h, scope: `myx.common`/`myx.distro-*` source (`ws-myx-devops`)

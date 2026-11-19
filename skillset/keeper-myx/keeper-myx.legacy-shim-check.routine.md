@@ -60,7 +60,7 @@ Exact instructions. Execute in order, every step, literally as written — not l
 
 # Closure steps
 
-1. **log-outcome**: Log the activity and its outcome as a new dated file under `processed/` — `processed/<board-item-type>-<date>-<short-topic>.md`. Then run this member's own post-activity reflection (`--member-inbox-reflection-upsert`), per `keeper-myx.armed.md`.
+1. **log-outcome**: Log the activity and its outcome as a new `note-*` own-inbox log item, through `--upsert-inbox-note`, named `note-<date>-<short-topic>.md`. Then run this member's own post-activity reflection (`--member-inbox-reflection-upsert`), per `keeper-myx.armed.md`.
 
 # Routine's local procedures
 
